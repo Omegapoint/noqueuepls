@@ -106,6 +106,7 @@ env.bak/
 venv.bak/
 .idea
 .DS_Store
+queuer/coords.json
 # Spyder project settings
 .spyderproject
 .spyproject
