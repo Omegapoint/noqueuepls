@@ -2,15 +2,22 @@
 import requests
 import re
 import json
+from screenshoter import take_screenshot
+from screenshoter import delete_screenshot
 
-def get_queue(file_path):
+def get_queue():
     print("checking queue...")
-    jsonRes = json.loads(ocr_space_file(file_path))
-    parsedText = jsonRes['ParsedResults'][0]['ParsedText']
-    queue = re.search("\d+", parsedText).group(0)
-    print("queue is:")
-    print(queue)
-    return queue
+    name = take_screenshot()
+    delete_screenshot(name)
+    try:
+        jsonRes = json.loads(ocr_space_file(name))
+        parsedText = jsonRes['ParsedResults'][0]['ParsedText']
+        queue = re.search("\d+", parsedText).group(0)
+        print("queue is:")
+        print(queue)
+        return queue
+    except:
+        print("Error: could not parse screenshot")
 
 def ocr_space_file(filename, overlay=True, api_key='9c1888603288957', language='eng'):
     payload = {'isOverlayRequired': overlay,
@@ -36,4 +43,4 @@ def ocr_space_url(url, overlay=True, api_key='9c1888603288957', language='eng'):
                       )
     return r.content.decode()
 
-get_queue('/Users/gabrielvilen/Downloads/queue.jpg')
+get_queue()
