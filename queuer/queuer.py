@@ -42,5 +42,3 @@ def ocr_space_url(url, overlay=True, api_key='9c1888603288957', language='eng'):
                       data=payload,
                       )
     return r.content.decode()
-
-get_queue()
