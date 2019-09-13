@@ -28,8 +28,8 @@ def ocr_space_file(overlay=True, api_key='9c1888603288957', language='eng'):
                'language': language,
                'base64Image': 'data:image/png;base64,' + image,
                }
-
     r = requests.post('https://api.ocr.space/parse/image', data=payload)
     return r.content.decode()
 
 get_queue()
+
