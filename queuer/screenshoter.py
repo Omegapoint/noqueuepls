@@ -3,12 +3,13 @@ import os
 import base64
 
 def take_screenshot():
-    name = "wowqueue.jpg"
+    name = "wowqueue.png"
     pyautogui.screenshot(name)
-    with open("./wowqueue.jpg", "rb") as f:
+    image = ""
+    with open("./testpic.png", "rb") as f:
         data = f.read()
-        print (base64.b64encode(data))
-    return name
+        image = base64.b64encode(data)
+    return image
 
 def delete_screenshot(name):
     os.remove(name)
